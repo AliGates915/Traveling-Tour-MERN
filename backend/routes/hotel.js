@@ -3,7 +3,7 @@ import Hotel from '../models/Hotels.js'
 
 import{ 
     createHotel,updateHotel,deleteHotel, getHotel, getAllHotel, 
-    countByCity,countByType
+    countByCity,countByType, getHotelRooms
 } from '../controllers/hotel.js'
 import { verifyAdmin } from '../utils/verifyToken.js';
 
@@ -21,7 +21,7 @@ router.get('/:id', getHotel);              // Then, this for hotel by ID
 router.get('/', getAllHotel);              // Lastly, get all hotels
 
 
-// router.get("/room/:id", getHotelRooms);
+router.get("/room/:id", getHotelRooms);
 
 
 export default router;

@@ -9,6 +9,8 @@ const SearchItem = ({ item }) => {
       <img src={item?.photos?.[0] || "default_image_url.jpg"} alt="" className="siImg" />
       <div className="siDesc">
         <h1 className="siTitle">{item?.name || "No name available"}</h1>
+        <span className="siSubtitle">{item?.city}</span>
+        
         <span className="siDistance">{item?.distance ? `${item.distance}m from center` : "Distance not available"}</span>
         <span className="siTaxiOp">Free airport taxi</span>
         <span className="siSubtitle">
