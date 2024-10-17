@@ -24,17 +24,27 @@ import User from '../models/User.js';
       }
     };
     
-    
-  // GET
-  export const getUser = async (req, res, next) => {
+
+    // GET
+    export const getUser = async (req, res, next) => {
       try {
-          const getUser = await User.findById(
-              req.params.id
-              // "1234"
-          )
-          res.status(200).json(getUser);
-      }   catch (error) {
-        next(error);
+        const userId = req.params.id;
+    
+        // Check if the ID is a valid ObjectId
+        if (!mongoose.Types.ObjectId.isValid(userId)) {
+          return res.status(400).json({ message: "Invalid user ID" });
+        }
+    
+        // Find user by ID
+        const getUser = await User.findById(userId);
+    
+        if (!getUser) {
+          return res.status(404).json({ message: "User not found" });
+        }
+    
+        res.status(200).json(getUser);
+      } catch (error) {
+        next(error);  // Pass the error to the error handler middleware
       }
     };
     
@@ -48,4 +58,5 @@ import User from '../models/User.js';
       }
     };
     
-  
+    
+    
